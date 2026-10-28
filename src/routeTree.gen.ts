@@ -13,6 +13,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedOsIndexRouteImport } from './routes/_authenticated/os.index'
+import { Route as AuthenticatedOsNovaRouteImport } from './routes/_authenticated/os.nova'
+import { Route as AuthenticatedOsIdEditarRouteImport } from './routes/_authenticated/os.$id.editar'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -33,30 +35,53 @@ const AuthenticatedOsIndexRoute = AuthenticatedOsIndexRouteImport.update({
   path: '/os/',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedOsNovaRoute = AuthenticatedOsNovaRouteImport.update({
+  id: '/os/nova',
+  path: '/os/nova',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedOsIdEditarRoute = AuthenticatedOsIdEditarRouteImport.update({
+  id: '/os/$id/editar',
+  path: '/os/$id/editar',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/os/nova': typeof AuthenticatedOsNovaRoute
   '/os/': typeof AuthenticatedOsIndexRoute
+  '/os/$id/editar': typeof AuthenticatedOsIdEditarRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/os/nova': typeof AuthenticatedOsNovaRoute
   '/os': typeof AuthenticatedOsIndexRoute
+  '/os/$id/editar': typeof AuthenticatedOsIdEditarRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
+  '/_authenticated/os/nova': typeof AuthenticatedOsNovaRoute
   '/_authenticated/os/': typeof AuthenticatedOsIndexRoute
+  '/_authenticated/os/$id/editar': typeof AuthenticatedOsIdEditarRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/os/'
+  fullPaths: '/' | '/auth' | '/os/nova' | '/os/' | '/os/$id/editar'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/os'
-  id: '__root__' | '/' | '/_authenticated' | '/auth' | '/_authenticated/os/'
+  to: '/' | '/auth' | '/os/nova' | '/os' | '/os/$id/editar'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/_authenticated/os/nova'
+    | '/_authenticated/os/'
+    | '/_authenticated/os/$id/editar'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -95,15 +120,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedOsIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/os/nova': {
+      id: '/_authenticated/os/nova'
+      path: '/os/nova'
+      fullPath: '/os/nova'
+      preLoaderRoute: typeof AuthenticatedOsNovaRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/os/$id/editar': {
+      id: '/_authenticated/os/$id/editar'
+      path: '/os/$id/editar'
+      fullPath: '/os/$id/editar'
+      preLoaderRoute: typeof AuthenticatedOsIdEditarRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedOsNovaRoute: typeof AuthenticatedOsNovaRoute
   AuthenticatedOsIndexRoute: typeof AuthenticatedOsIndexRoute
+  AuthenticatedOsIdEditarRoute: typeof AuthenticatedOsIdEditarRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedOsNovaRoute: AuthenticatedOsNovaRoute,
   AuthenticatedOsIndexRoute: AuthenticatedOsIndexRoute,
+  AuthenticatedOsIdEditarRoute: AuthenticatedOsIdEditarRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
