@@ -14,7 +14,9 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedOsIndexRouteImport } from './routes/_authenticated/os.index'
 import { Route as AuthenticatedOsNovaRouteImport } from './routes/_authenticated/os.nova'
+import { Route as AuthenticatedOsIdIndexRouteImport } from './routes/_authenticated/os.$id.index'
 import { Route as AuthenticatedOsIdEditarRouteImport } from './routes/_authenticated/os.$id.editar'
+import { Route as AuthenticatedOsIdImprimirRouteImport } from './routes/_authenticated/os.$id.imprimir'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,11 +42,22 @@ const AuthenticatedOsNovaRoute = AuthenticatedOsNovaRouteImport.update({
   path: '/os/nova',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedOsIdIndexRoute = AuthenticatedOsIdIndexRouteImport.update({
+  id: '/os/$id/',
+  path: '/os/$id/',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedOsIdEditarRoute = AuthenticatedOsIdEditarRouteImport.update({
   id: '/os/$id/editar',
   path: '/os/$id/editar',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedOsIdImprimirRoute =
+  AuthenticatedOsIdImprimirRouteImport.update({
+    id: '/os/$id/imprimir',
+    path: '/os/$id/imprimir',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -52,6 +65,8 @@ export interface FileRoutesByFullPath {
   '/os/nova': typeof AuthenticatedOsNovaRoute
   '/os/': typeof AuthenticatedOsIndexRoute
   '/os/$id/editar': typeof AuthenticatedOsIdEditarRoute
+  '/os/$id/imprimir': typeof AuthenticatedOsIdImprimirRoute
+  '/os/$id/': typeof AuthenticatedOsIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -59,6 +74,8 @@ export interface FileRoutesByTo {
   '/os/nova': typeof AuthenticatedOsNovaRoute
   '/os': typeof AuthenticatedOsIndexRoute
   '/os/$id/editar': typeof AuthenticatedOsIdEditarRoute
+  '/os/$id/imprimir': typeof AuthenticatedOsIdImprimirRoute
+  '/os/$id': typeof AuthenticatedOsIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -68,12 +85,28 @@ export interface FileRoutesById {
   '/_authenticated/os/nova': typeof AuthenticatedOsNovaRoute
   '/_authenticated/os/': typeof AuthenticatedOsIndexRoute
   '/_authenticated/os/$id/editar': typeof AuthenticatedOsIdEditarRoute
+  '/_authenticated/os/$id/imprimir': typeof AuthenticatedOsIdImprimirRoute
+  '/_authenticated/os/$id/': typeof AuthenticatedOsIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/os/nova' | '/os/' | '/os/$id/editar'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/os/nova'
+    | '/os/'
+    | '/os/$id/editar'
+    | '/os/$id/imprimir'
+    | '/os/$id/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/os/nova' | '/os' | '/os/$id/editar'
+  to:
+    | '/'
+    | '/auth'
+    | '/os/nova'
+    | '/os'
+    | '/os/$id/editar'
+    | '/os/$id/imprimir'
+    | '/os/$id'
   id:
     | '__root__'
     | '/'
@@ -82,6 +115,8 @@ export interface FileRouteTypes {
     | '/_authenticated/os/nova'
     | '/_authenticated/os/'
     | '/_authenticated/os/$id/editar'
+    | '/_authenticated/os/$id/imprimir'
+    | '/_authenticated/os/$id/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -127,11 +162,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedOsNovaRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/os/$id/': {
+      id: '/_authenticated/os/$id/'
+      path: '/os/$id'
+      fullPath: '/os/$id/'
+      preLoaderRoute: typeof AuthenticatedOsIdIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/os/$id/editar': {
       id: '/_authenticated/os/$id/editar'
       path: '/os/$id/editar'
       fullPath: '/os/$id/editar'
       preLoaderRoute: typeof AuthenticatedOsIdEditarRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/os/$id/imprimir': {
+      id: '/_authenticated/os/$id/imprimir'
+      path: '/os/$id/imprimir'
+      fullPath: '/os/$id/imprimir'
+      preLoaderRoute: typeof AuthenticatedOsIdImprimirRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
   }
@@ -141,12 +190,16 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedOsNovaRoute: typeof AuthenticatedOsNovaRoute
   AuthenticatedOsIndexRoute: typeof AuthenticatedOsIndexRoute
   AuthenticatedOsIdEditarRoute: typeof AuthenticatedOsIdEditarRoute
+  AuthenticatedOsIdImprimirRoute: typeof AuthenticatedOsIdImprimirRoute
+  AuthenticatedOsIdIndexRoute: typeof AuthenticatedOsIdIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedOsNovaRoute: AuthenticatedOsNovaRoute,
   AuthenticatedOsIndexRoute: AuthenticatedOsIndexRoute,
   AuthenticatedOsIdEditarRoute: AuthenticatedOsIdEditarRoute,
+  AuthenticatedOsIdImprimirRoute: AuthenticatedOsIdImprimirRoute,
+  AuthenticatedOsIdIndexRoute: AuthenticatedOsIdIndexRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
