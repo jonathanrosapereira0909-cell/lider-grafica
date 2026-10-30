@@ -57,7 +57,7 @@ function OsDetalhe() {
 
   async function rpc(fn: string, args: Record<string, unknown>, ok: string) {
     const { error } = await supabase.rpc(fn as never, args as never);
-    if (error) return toast.error(erroMsg(error));
+    if (error) { toast.error(erroMsg(error)); return; }
     toast.success(ok);
     qc.invalidateQueries({ queryKey: ["os"] });
   }

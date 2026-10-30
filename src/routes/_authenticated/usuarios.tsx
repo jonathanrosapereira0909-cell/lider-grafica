@@ -20,7 +20,7 @@ function Usuarios() {
 
   async function definir(uid: string, role: string) {
     const { error } = await supabase.rpc("definir_papel", { _user_id: uid, _role: (role || null) as AppRole });
-    if (error) return toast.error(erroMsg(error));
+    if (error) { toast.error(erroMsg(error)); return; }
     toast.success("Acesso atualizado");
     qc.invalidateQueries({ queryKey: ["usuarios"] });
     qc.invalidateQueries({ queryKey: ["me"] });
