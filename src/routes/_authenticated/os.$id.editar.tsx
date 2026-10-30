@@ -49,8 +49,8 @@ function EditarOs() {
     const { data, error } = await supabase
       .from("ordens_servico").update(osToPayload(v)).eq("id", id).eq("version", os!.version).select("id");
     setSaving(false);
-    if (error) return toast.error(erroMsg(error));
-    if (!data.length) return toast.error(CONFLITO_MSG);
+    if (error) { toast.error(erroMsg(error)); return; }
+    if (!data.length) { toast.error(CONFLITO_MSG); return; }
     toast.success("OS alterada");
     qc.invalidateQueries({ queryKey: ["os"] });
     navigate({ to: "/os/$id", params: { id } });

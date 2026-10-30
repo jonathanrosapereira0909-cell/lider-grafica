@@ -9,7 +9,7 @@ import { useMe } from "@/hooks/use-me";
 import { erroMsg, hojeISO } from "@/lib/os";
 
 export const Route = createFileRoute("/_authenticated/os/nova")({
-  validateSearch: (s: Record<string, unknown>) => ({ de: typeof s.de === "string" ? s.de : undefined }),
+  validateSearch: (s: Record<string, unknown>): { de?: string } => ({ de: typeof s["de"] === "string" ? s["de"] : undefined }),
   head: () => ({ meta: [{ title: "Nova OS — Lider Gráfica" }] }),
   component: NovaOs,
 });
@@ -48,9 +48,9 @@ function NovaOs() {
 
   async function salvar(v: OsFormValues) {
     setSaving(true);
-    const { data, error } = await supabase.from("ordens_servico").insert(osToPayload(v)).select("id, numero").single();
+    const { data, error } = await supabase.from("ordens_servico").insert(osToPayload(v) as never).select("id, numero").single();
     setSaving(false);
-    if (error) return toast.error(erroMsg(error));
+    if (error) { toast.error(erroMsg(error)); return; }
     toast.success(`OS ${data.numero} criada`);
     qc.invalidateQueries({ queryKey: ["os"] });
     navigate({ to: "/os/$id", params: { id: data.id } });

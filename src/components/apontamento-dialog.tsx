@@ -41,8 +41,8 @@ export function ApontamentoDialog({
 
   async function salvar(e: React.FormEvent) {
     e.preventDefault();
-    if (perda > 0 && !v.motivo_perda_id) return toast.error("Informe o motivo da perda");
-    if (v.fim && v.fim < v.inicio) return toast.error("O fim deve ser depois do início");
+    if (perda > 0 && !v.motivo_perda_id) { toast.error("Informe o motivo da perda"); return; }
+    if (v.fim && v.fim < v.inicio) { toast.error("O fim deve ser depois do início"); return; }
     setSaving(true);
     const payload = {
       maquina_id: v.maquina_id,
