@@ -9,7 +9,7 @@ import { useMe } from "@/hooks/use-me";
 import { erroMsg, hojeISO } from "@/lib/os";
 
 export const Route = createFileRoute("/_authenticated/os/nova")({
-  validateSearch: (s: Record<string, unknown>): { de?: string } => ({ de: typeof s["de"] === "string" ? s["de"] : undefined }),
+  validateSearch: (s: Record<string, unknown>): { de?: string } => (typeof s["de"] === "string" ? { de: s["de"] } : {}),
   head: () => ({ meta: [{ title: "Nova OS — Lider Gráfica" }] }),
   component: NovaOs,
 });
