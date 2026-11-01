@@ -53,6 +53,14 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-chrome: var(--chrome);
+  --color-chrome-strong: var(--chrome-strong);
+  --color-chrome-border: var(--chrome-border);
+  --color-chrome-hover: var(--chrome-hover);
+  --color-tab-active: var(--tab-active);
+  --color-grid-head: var(--grid-head);
+  --color-grid-alt: var(--grid-alt);
+  --color-grid-selected: var(--grid-selected);
 }
 
 :root {
@@ -102,6 +110,18 @@
   --sidebar-ring: oklch(0.7 0.12 232);
   --gradient-cmyk: linear-gradient(90deg, oklch(0.7 0.14 220) 0 25%, oklch(0.6 0.22 355) 25% 50%, oklch(0.88 0.17 98) 50% 75%, oklch(0.2 0.015 260) 75% 100%);
   --shadow-card: 0 1px 2px oklch(0.2 0.015 260 / 6%), 0 4px 16px -8px oklch(0.2 0.015 260 / 12%);
+  /* desktop ERP chrome */
+  --chrome: oklch(0.955 0.004 250);
+  --chrome-strong: oklch(0.91 0.006 250);
+  --chrome-border: oklch(0.82 0.008 250);
+  --chrome-hover: oklch(0.92 0.04 240);
+  --tab-active: oklch(0.88 0.06 240);
+  --grid-head: oklch(0.96 0.16 105);
+  --grid-head-foreground: oklch(0.2 0.015 260);
+  --grid-alt: oklch(0.95 0.055 170);
+  --grid-line: oklch(0.85 0.01 250);
+  --grid-selected: oklch(0.8 0.09 245);
+  --grid-selected-foreground: oklch(0.15 0.02 260);
 }
 
 @layer base {
@@ -129,6 +149,37 @@
 }
 @utility tabular {
   font-variant-numeric: tabular-nums;
+}
+
+/* Dense spreadsheet-like grid (yellow header, mint zebra rows) */
+.erp-grid {
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.erp-grid thead th {
+  background: var(--grid-head);
+  color: var(--grid-head-foreground);
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 3px 6px;
+  border-right: 1px solid var(--grid-line);
+  border-bottom: 1px solid var(--grid-line);
+  text-align: left;
+  white-space: nowrap;
+}
+.erp-grid tbody td {
+  padding: 2px 6px;
+  border-right: 1px solid var(--grid-line);
+  border-top: 0;
+}
+.erp-grid tbody tr { border-top: 0; }
+.erp-grid tbody tr:nth-child(even) td { background: var(--grid-alt); }
+.erp-grid tbody tr:hover td { background: var(--chrome-hover); }
+.erp-grid tbody tr[data-selected="true"] td {
+  background: var(--grid-selected);
+  color: var(--grid-selected-foreground);
 }
 
 @media print {
