@@ -90,14 +90,15 @@ function OsList() {
   const sel = idx >= 0 ? lista[idx] : null;
 
   useEffect(() => {
-    if (lista.length && idx < 0) setSelId(lista[0].id!);
+    if (idx < 0 && lista[0]) setSelId(lista[0].id!);
   }, [lista, idx]);
 
   function mover(d: number) {
     if (!lista.length) return;
     const n = Math.min(lista.length - 1, Math.max(0, (idx < 0 ? 0 : idx) + d));
-    setSelId(lista[n].id!);
-    document.getElementById(`os-row-${lista[n].id}`)?.scrollIntoView({ block: "nearest" });
+    const alvo = lista[n]!;
+    setSelId(alvo.id!);
+    document.getElementById(`os-row-${alvo.id}`)?.scrollIntoView({ block: "nearest" });
   }
 
   const abrir = (to: "/os/$id" | "/os/$id/editar" | "/os/$id/imprimir") =>
@@ -107,7 +108,7 @@ function OsList() {
     if (!sel) return;
     if (!window.confirm(`Baixar e finalizar a OS ${sel.numero}?`)) return;
     const { error } = await supabase.rpc("os_baixar" as never, { _id: sel.id } as never);
-    if (error) return toast.error(erroMsg(error));
+    if (error) { toast.error(erroMsg(error)); return; }
     toast.success(`OS ${sel.numero} baixada`);
     qc.invalidateQueries({ queryKey: ["os"] });
   }

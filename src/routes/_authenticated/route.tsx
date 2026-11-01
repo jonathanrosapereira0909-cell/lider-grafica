@@ -57,7 +57,7 @@ function Layout() {
   }
 
   const g = !!me?.isGestor;
-  const aba = ABAS.find((a) => pathname.startsWith(a.prefix)) ?? ABAS[0];
+  const aba = ABAS.find((a) => pathname.startsWith(a.prefix)) ?? ABAS[0]!;
 
   const tools = [
     { to: "/clientes", label: "Clientes", icon: Users },
