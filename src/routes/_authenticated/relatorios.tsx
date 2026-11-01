@@ -42,7 +42,7 @@ function Relatorios() {
           </div>
         </div>
         <div className="overflow-hidden rounded-lg border bg-card shadow-card">
-          <table className="w-full text-sm">
+          <table className="erp-grid w-full text-sm">
             <thead className="bg-muted text-left text-xs uppercase text-muted-foreground">
               <tr>{["Período", "Máquina", "Motivo da perda", "Produzido", "Perdido", "Apontamentos"].map((h) => <th key={h} className="px-4 py-2.5 font-medium">{h}</th>)}</tr>
             </thead>

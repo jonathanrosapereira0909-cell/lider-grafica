@@ -31,7 +31,7 @@ function Usuarios() {
       <PageHeader title="Usuários" sub="Novas contas ficam sem acesso até o gestor definir o perfil." />
       <div className="px-8 py-6">
         <div className="overflow-hidden rounded-lg border bg-card shadow-card">
-          <table className="w-full text-sm">
+          <table className="erp-grid w-full text-sm">
             <thead className="bg-muted text-left text-xs uppercase text-muted-foreground">
               <tr>{["Nome", "E-mail", "Perfil"].map((h) => <th key={h} className="px-4 py-2.5 font-medium">{h}</th>)}</tr>
             </thead>

@@ -71,8 +71,8 @@ function Layout() {
   ] as const;
 
   return (
-    <div className="flex min-h-screen flex-col bg-background">
-      <header className="no-print sticky top-0 z-30 border-b border-chrome-border bg-chrome">
+    <div className="flex h-screen flex-col bg-background print:h-auto">
+      <header className="no-print shrink-0 border-b border-chrome-border bg-chrome">
         {/* menu bar */}
         <div className="flex items-center justify-between pr-3">
           <Menubar className="h-7 rounded-none border-0 bg-transparent p-0 shadow-none">
@@ -157,7 +157,7 @@ function Layout() {
           </div>
         </div>
       </header>
-      <main className="min-w-0 flex-1">
+      <main className="min-h-0 min-w-0 flex-1 overflow-auto print:overflow-visible">
         <Outlet />
       </main>
     </div>
