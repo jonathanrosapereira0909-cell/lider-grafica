@@ -38,9 +38,9 @@ export function PrazoBadge({ prazo, status }: { prazo: string | null; status: Os
 
 export function PageHeader({ title, sub, actions }: { title: string; sub?: ReactNode; actions?: ReactNode }) {
   return (
-    <div className="flex flex-wrap items-end justify-between gap-4 border-b bg-card px-8 py-6">
+    <div className="flex flex-wrap items-center justify-between gap-3 border-b border-chrome-border bg-chrome px-4 py-2.5">
       <div>
-        <h1 className="text-2xl font-bold">{title}</h1>
+        <h1 className="text-lg font-bold">{title}</h1>
         {sub && <div className="mt-1 text-sm text-muted-foreground">{sub}</div>}
       </div>
       {actions && <div className="no-print flex flex-wrap gap-2">{actions}</div>}
