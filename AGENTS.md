@@ -16,3 +16,5 @@
 - Concurrent edits use the `version` column (update ... eq version; 0 rows = conflict). Why: avoid silent overwrites.
 - OS stores a snapshot of product data at creation. Why: product edits must not change past OS.
 - Never consume `os_numero_seq` in tests against the real database; sequences don't roll back.
+
+- Login is temporarily disabled: unauthenticated visitors are signed in anonymously and a DB trigger grants them gestor. Why: owner requested open access for now; revert by dropping on_anon_user_gestor, disabling anonymous auth and restoring the /auth redirect.
