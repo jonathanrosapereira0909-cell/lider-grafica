@@ -16,7 +16,7 @@ export const Route = createFileRoute("/_authenticated")({
     // Login desativado temporariamente: entra automaticamente como Gestor.
     if (!data.user) {
       const { error } = await supabase.auth.signInAnonymously();
-      if (error) throw redirect({ to: "/auth" });
+      if (error) throw error;
     }
   },
   component: Layout,

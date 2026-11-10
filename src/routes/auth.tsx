@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, redirect } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
@@ -10,6 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { erroMsg } from "@/lib/os";
 
 export const Route = createFileRoute("/auth")({
+  beforeLoad: () => { throw redirect({ to: "/os" }); }, // login desativado temporariamente
   ssr: false,
   head: () => ({
     meta: [
