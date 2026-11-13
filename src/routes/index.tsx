@@ -12,7 +12,7 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary" },
     ],
   }),
-  beforeLoad: () => { throw redirect({ to: "/os" }); },
+  beforeLoad: () => { throw redirect({ to: "/dashboard" }); },
   component: Index,
 });
 

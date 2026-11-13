@@ -1,0 +1,3 @@
+- [ ] Criar dados e resumo de produção com permissões preservadas.
+- [ ] Criar dashboard, filtros, metas e atualização em tempo real.
+- [ ] Atualizar navegação e verificar a experiência.

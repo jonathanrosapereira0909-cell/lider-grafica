@@ -176,20 +176,31 @@ export type Database = {
           codigo: string
           id: string
           nome: string
+          setor_id: string | null
         }
         Insert: {
           ativo?: boolean
           codigo: string
           id?: string
           nome: string
+          setor_id?: string | null
         }
         Update: {
           ativo?: boolean
           codigo?: string
           id?: string
           nome?: string
+          setor_id?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "maquinas_setor_id_fkey"
+            columns: ["setor_id"]
+            isOneToOne: false
+            referencedRelation: "setores"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       motivos_perda: {
         Row: {
@@ -208,6 +219,47 @@ export type Database = {
           nome?: string
         }
         Relationships: []
+      }
+      orcamentos: {
+        Row: {
+          cliente_id: string
+          created_at: string
+          created_by: string | null
+          descricao: string | null
+          id: string
+          numero: number
+          status: string
+          valor: number
+        }
+        Insert: {
+          cliente_id: string
+          created_at?: string
+          created_by?: string | null
+          descricao?: string | null
+          id?: string
+          numero?: number
+          status?: string
+          valor?: number
+        }
+        Update: {
+          cliente_id?: string
+          created_at?: string
+          created_by?: string | null
+          descricao?: string | null
+          id?: string
+          numero?: number
+          status?: string
+          valor?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "orcamentos_cliente_id_fkey"
+            columns: ["cliente_id"]
+            isOneToOne: false
+            referencedRelation: "clientes"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       ordens_servico: {
         Row: {
@@ -363,6 +415,57 @@ export type Database = {
           },
         ]
       }
+      pedidos: {
+        Row: {
+          cliente_id: string
+          created_at: string
+          created_by: string | null
+          descricao: string | null
+          id: string
+          numero: number
+          orcamento_id: string | null
+          status: string
+          valor: number
+        }
+        Insert: {
+          cliente_id: string
+          created_at?: string
+          created_by?: string | null
+          descricao?: string | null
+          id?: string
+          numero?: number
+          orcamento_id?: string | null
+          status?: string
+          valor?: number
+        }
+        Update: {
+          cliente_id?: string
+          created_at?: string
+          created_by?: string | null
+          descricao?: string | null
+          id?: string
+          numero?: number
+          orcamento_id?: string | null
+          status?: string
+          valor?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pedidos_cliente_id_fkey"
+            columns: ["cliente_id"]
+            isOneToOne: false
+            referencedRelation: "clientes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pedidos_orcamento_id_fkey"
+            columns: ["orcamento_id"]
+            isOneToOne: false
+            referencedRelation: "orcamentos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       produto_categorias: {
         Row: {
           ativo: boolean
@@ -455,6 +558,30 @@ export type Database = {
           email?: string | null
           id?: string
           nome?: string
+        }
+        Relationships: []
+      }
+      setores: {
+        Row: {
+          ativo: boolean
+          id: string
+          meta_diaria: number | null
+          nome: string
+          ordem: number
+        }
+        Insert: {
+          ativo?: boolean
+          id?: string
+          meta_diaria?: number | null
+          nome: string
+          ordem?: number
+        }
+        Update: {
+          ativo?: boolean
+          id?: string
+          meta_diaria?: number | null
+          nome?: string
+          ordem?: number
         }
         Relationships: []
       }
@@ -615,6 +742,7 @@ export type Database = {
           isSetofReturn: false
         }
       }
+      dashboard_producao: { Args: { _dia: string }; Returns: Json }
       definir_papel: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]

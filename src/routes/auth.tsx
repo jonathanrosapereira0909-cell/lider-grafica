@@ -10,7 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { erroMsg } from "@/lib/os";
 
 export const Route = createFileRoute("/auth")({
-  beforeLoad: () => { throw redirect({ to: "/os" }); }, // login desativado temporariamente
+  beforeLoad: () => { throw redirect({ to: "/dashboard" }); }, // login desativado temporariamente
   ssr: false,
   head: () => ({
     meta: [

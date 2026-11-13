@@ -1,6 +1,6 @@
 import { createFileRoute, Link, Outlet, redirect, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
-import { ClipboardList, Users, Package, UserCog, BarChart3, LogOut, FilePlus2, X } from "lucide-react";
+import { ClipboardList, Users, Package, UserCog, BarChart3, LayoutDashboard, LogOut, FilePlus2, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useMe } from "@/hooks/use-me";
 import { useRealtimeSync } from "@/hooks/use-realtime";
@@ -23,6 +23,7 @@ export const Route = createFileRoute("/_authenticated")({
 });
 
 const ABAS: { prefix: string; label: string; icon: typeof ClipboardList }[] = [
+  { prefix: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { prefix: "/os", label: "OS", icon: ClipboardList },
   { prefix: "/clientes", label: "Clientes", icon: Users },
   { prefix: "/produtos", label: "Produtos", icon: Package },
@@ -61,9 +62,10 @@ function Layout() {
   }
 
   const g = !!me?.isGestor;
-  const aba = ABAS.find((a) => pathname.startsWith(a.prefix)) ?? ABAS[0]!;
+  const aba = ABAS.find((a) => pathname.startsWith(a.prefix)) ?? { prefix: "/dashboard", label: "Dashboard", icon: LayoutDashboard };
 
   const tools = [
+    { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
     { to: "/clientes", label: "Clientes", icon: Users },
     { to: "/produtos", label: "Produtos", icon: Package },
     "sep",
@@ -90,6 +92,7 @@ function Layout() {
             <MenubarMenu>
               <MenubarTrigger className="px-2 py-0.5 text-sm font-normal">Produção</MenubarTrigger>
               <MenubarContent>
+                <MenubarItem onClick={() => navigate({ to: "/dashboard" })}>Dashboard</MenubarItem>
                 <MenubarItem onClick={() => navigate({ to: "/os" })}>Ordens de serviço</MenubarItem>
                 {g && <MenubarItem onClick={() => navigate({ to: "/os/nova" })}>Incluir OS</MenubarItem>}
               </MenubarContent>

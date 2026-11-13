@@ -16,5 +16,7 @@
 - Concurrent edits use the `version` column (update ... eq version; 0 rows = conflict). Why: avoid silent overwrites.
 - OS stores a snapshot of product data at creation. Why: product edits must not change past OS.
 - Never consume `os_numero_seq` in tests against the real database; sequences don't roll back.
+- Dashboard aggregates use a security-invoker database RPC; only sector production follows the selected São Paulo date. Why: RLS and current workflow counts must remain authoritative.
+- Sector goal edits compare the original value before writing. Why: this table has no version column and concurrent goal changes must not be overwritten silently.
 
 - Login is temporarily disabled: unauthenticated visitors are signed in anonymously and a DB trigger grants them gestor. Why: owner requested open access for now; revert by dropping on_anon_user_gestor, disabling anonymous auth and restoring the /auth redirect.

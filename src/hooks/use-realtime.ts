@@ -20,6 +20,15 @@ export function useRealtimeSync() {
       .on("postgres_changes", { event: "*", schema: "public", table: "produtos" }, () => {
         qc.invalidateQueries({ queryKey: ["produtos"] });
       })
+      .on("postgres_changes", { event: "*", schema: "public", table: "orcamentos" }, () => {
+        qc.invalidateQueries({ queryKey: ["os", "dashboard"] });
+      })
+      .on("postgres_changes", { event: "*", schema: "public", table: "pedidos" }, () => {
+        qc.invalidateQueries({ queryKey: ["os", "dashboard"] });
+      })
+      .on("postgres_changes", { event: "*", schema: "public", table: "setores" }, () => {
+        qc.invalidateQueries({ queryKey: ["os", "dashboard"] });
+      })
       .subscribe();
     return () => {
       supabase.removeChannel(channel);

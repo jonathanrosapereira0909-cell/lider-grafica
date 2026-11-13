@@ -186,3 +186,60 @@
   .no-print { display: none !important; }
   body { background: white; }
 }
+
+/* Industrial dashboard: semantic palette shared by metrics, flow and charts. */
+:root {
+  --dash-budget: #063365;
+  --dash-orders: #8b16d6;
+  --dash-open: #076aff;
+  --dash-waiting: #ff800b;
+  --dash-running: #00a154;
+  --dash-billing: #ecac00;
+  --dash-shipping: #ef1740;
+  --dash-surface: #f1f5fb;
+  --dash-on-color: #fff;
+  --dash-shadow: 0 2px 4px #13385c12, 0 5px 16px #13385c0d;
+  --dash-budget-gradient: linear-gradient(145deg, #084781, #041c46);
+  --dash-orders-gradient: linear-gradient(145deg, #a22deb, #6107a2);
+  --dash-open-gradient: linear-gradient(145deg, #078cff, #044bc6);
+  --dash-waiting-gradient: linear-gradient(145deg, #ff9711, #f25c00);
+  --dash-running-gradient: linear-gradient(145deg, #00b869, #007b42);
+  --dash-billing-gradient: linear-gradient(145deg, #f9bd03, #d08300);
+  --dash-shipping-gradient: linear-gradient(145deg, #ff345c, #cf002e);
+}
+.dashboard-page { background: var(--dash-surface); }
+.dashboard-page h1, .dashboard-page h2 { letter-spacing: 0; }
+.dashboard-tile { color: var(--dash-on-color); }
+.dashboard-budget { background: var(--dash-budget-gradient); }
+.dashboard-orders { background: var(--dash-orders-gradient); }
+.dashboard-open { background: var(--dash-open-gradient); }
+.dashboard-waiting { background: var(--dash-waiting-gradient); }
+.dashboard-running { background: var(--dash-running-gradient); }
+.dashboard-billing { background: var(--dash-billing-gradient); }
+.dashboard-shipping { background: var(--dash-shipping-gradient); }
+.dashboard-section { padding: 18px; background: var(--card); border-top: 2px solid var(--border); }
+.dashboard-heading { font-size: 19px; font-weight: 700; line-height: 1.35; }
+.dashboard-table { border-collapse: collapse; }
+.dashboard-table th { padding: 8px; text-align: left; background: var(--dash-budget); color: var(--dash-on-color); font-size: 12px; white-space: nowrap; }
+.dashboard-table td { padding: 10px 8px; border-bottom: 1px solid var(--border); font-size: 12px; }
+.dashboard-table tr:nth-child(even) { background: var(--dash-surface); }
+.dashboard-table tbody tr:hover, .dashboard-table tbody tr:focus-visible { background: var(--chrome-hover); outline: 2px solid var(--ring); outline-offset: -2px; }
+.dashboard-table td .bg-info { background: var(--dash-running); color: var(--dash-on-color); }
+.dashboard-table td .bg-muted { background: var(--dash-waiting); color: var(--dash-on-color); }
+.dashboard-table td .bg-primary { background: var(--dash-billing); color: var(--foreground); }
+.dashboard-table td .bg-accent, .dashboard-table td .bg-warning { background: var(--dash-shipping); color: var(--dash-on-color); }
+.dashboard-sector { --sector-color: var(--dash-open); }
+.dashboard-sector-1 { --sector-color: var(--dash-running); }
+.dashboard-sector-2 { --sector-color: var(--dash-open); }
+.dashboard-sector-3 { --sector-color: var(--dash-orders); }
+.dashboard-sector-4 { --sector-color: var(--dash-waiting); }
+.dashboard-progress { appearance: none; overflow: hidden; border: 0; border-radius: 6px; background: var(--muted); display: block; }
+.dashboard-progress::-webkit-progress-bar { background: var(--muted); border-radius: 6px; }
+.dashboard-progress::-webkit-progress-value { background: var(--sector-color); border-radius: 6px; }
+.dashboard-progress::-moz-progress-bar { background: var(--sector-color); border-radius: 6px; }
+@media (max-width: 639px) {
+  .dashboard-flow { flex-direction: column; gap: 8px; }
+  .dashboard-flow > .dashboard-tile { width: 100%; min-height: 78px; flex-direction: row; align-items: center; padding: 12px 16px; }
+  .dashboard-flow > .dashboard-tile strong { margin-top: 0; }
+  .dashboard-flow > svg { transform: rotate(90deg); }
+}
