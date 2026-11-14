@@ -10,7 +10,7 @@ import { erroMsg, hojeISO } from "@/lib/os";
 
 export const Route = createFileRoute("/_authenticated/os/nova")({
   validateSearch: (s: Record<string, unknown>): { de?: string } => (typeof s["de"] === "string" ? { de: s["de"] } : {}),
-  head: () => ({ meta: [{ title: "Nova OS — Lider Gráfica" }] }),
+  head: () => ({ meta: [{ title: "Nova OS — Lider Gráfica" }, { name: "description", content: "Criação de ordens de serviço da Lider Gráfica." }, { property: "og:title", content: "Nova OS — Lider Gráfica" }, { property: "og:description", content: "Criação de ordens de serviço da Lider Gráfica." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }] }),
   component: NovaOs,
 });
 

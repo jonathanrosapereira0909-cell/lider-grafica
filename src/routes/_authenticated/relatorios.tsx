@@ -7,7 +7,7 @@ import { Field, PageHeader, selectCls } from "@/components/os-ui";
 import { fmtData, fmtNum, hojeISO } from "@/lib/os";
 
 export const Route = createFileRoute("/_authenticated/relatorios")({
-  head: () => ({ meta: [{ title: "Relatórios — Lider Gráfica" }] }),
+  head: () => ({ meta: [{ title: "Relatórios — Lider Gráfica" }, { name: "description", content: "Relatórios de produção e perdas da Lider Gráfica por período e máquina." }, { property: "og:title", content: "Relatórios — Lider Gráfica" }, { property: "og:description", content: "Relatórios de produção e perdas da Lider Gráfica por período e máquina." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }] }),
   component: Relatorios,
 });
 

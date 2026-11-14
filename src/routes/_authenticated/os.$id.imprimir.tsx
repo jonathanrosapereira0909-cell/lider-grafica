@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { STATUS_LABEL, fmtData, fmtNum } from "@/lib/os";
 
 export const Route = createFileRoute("/_authenticated/os/$id/imprimir")({
-  head: () => ({ meta: [{ title: "Imprimir OS — Lider Gráfica" }] }),
+  head: () => ({ meta: [{ title: "Imprimir OS — Lider Gráfica" }, { name: "description", content: "Impressão de uma ordem de serviço da Lider Gráfica." }, { property: "og:title", content: "Imprimir OS — Lider Gráfica" }, { property: "og:description", content: "Impressão de uma ordem de serviço da Lider Gráfica." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }] }),
   component: Imprimir,
 });
 

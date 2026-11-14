@@ -1,3 +1,3 @@
-- [ ] Criar dados e resumo de produção com permissões preservadas.
-- [ ] Criar dashboard, filtros, metas e atualização em tempo real.
-- [ ] Atualizar navegação e verificar a experiência.
+- [x] Criar dados e resumo de produção com permissões preservadas.
+- [x] Criar dashboard, filtros, metas e atualização em tempo real.
+- [x] Atualizar navegação e verificar abertura, filtros e diálogo no computador e celular.

@@ -16,7 +16,7 @@ import { useMaquinas, useMotivos, useUsuarios } from "@/lib/queries";
 import { consolidar, erroMsg, fmtBRL, fmtData, fmtDataHora, fmtNum, toLocalInput } from "@/lib/os";
 
 export const Route = createFileRoute("/_authenticated/os/$id/")({
-  head: () => ({ meta: [{ title: "OS — Lider Gráfica" }] }),
+  head: () => ({ meta: [{ title: "OS — Lider Gráfica" }, { name: "description", content: "Detalhes, produção e histórico de uma ordem de serviço da Lider Gráfica." }, { property: "og:title", content: "OS — Lider Gráfica" }, { property: "og:description", content: "Detalhes, produção e histórico de uma ordem de serviço da Lider Gráfica." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }] }),
   component: OsDetalhe,
 });
 

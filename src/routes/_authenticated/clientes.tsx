@@ -10,7 +10,7 @@ import { useClientes } from "@/lib/queries";
 import { useMe } from "@/hooks/use-me";
 
 export const Route = createFileRoute("/_authenticated/clientes")({
-  head: () => ({ meta: [{ title: "Clientes — Lider Gráfica" }] }),
+  head: () => ({ meta: [{ title: "Clientes — Lider Gráfica" }, { name: "description", content: "Cadastro e acompanhamento dos clientes da Lider Gráfica." }, { property: "og:title", content: "Clientes — Lider Gráfica" }, { property: "og:description", content: "Cadastro e acompanhamento dos clientes da Lider Gráfica." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }] }),
   component: Clientes,
 });
 

@@ -8,7 +8,7 @@ import { useMe } from "@/hooks/use-me";
 import { erroMsg, type AppRole } from "@/lib/os";
 
 export const Route = createFileRoute("/_authenticated/usuarios")({
-  head: () => ({ meta: [{ title: "Usuários — Lider Gráfica" }] }),
+  head: () => ({ meta: [{ title: "Usuários — Lider Gráfica" }, { name: "description", content: "Gestão dos acessos e funções da equipe da Lider Gráfica." }, { property: "og:title", content: "Usuários — Lider Gráfica" }, { property: "og:description", content: "Gestão dos acessos e funções da equipe da Lider Gráfica." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }] }),
   component: Usuarios,
 });
 

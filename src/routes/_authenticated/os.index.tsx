@@ -18,7 +18,7 @@ import { useMe } from "@/hooks/use-me";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/os/")({
-  head: () => ({ meta: [{ title: "Ordens de serviço — Lider Gráfica" }] }),
+  head: () => ({ meta: [{ title: "Ordens de serviço — Lider Gráfica" }, { name: "description", content: "Consulta e acompanhamento das ordens de serviço da Lider Gráfica." }, { property: "og:title", content: "Ordens de serviço — Lider Gráfica" }, { property: "og:description", content: "Consulta e acompanhamento das ordens de serviço da Lider Gráfica." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }] }),
   component: OsList,
 });
 

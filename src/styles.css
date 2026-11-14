@@ -208,6 +208,7 @@
   --dash-shipping-gradient: linear-gradient(145deg, #ff345c, #cf002e);
 }
 .dashboard-page { background: var(--dash-surface); }
+.dashboard-date::-webkit-datetime-edit { opacity: 0; }
 .dashboard-page h1, .dashboard-page h2 { letter-spacing: 0; }
 .dashboard-tile { color: var(--dash-on-color); }
 .dashboard-budget { background: var(--dash-budget-gradient); }

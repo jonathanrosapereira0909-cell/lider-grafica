@@ -13,7 +13,7 @@ import { useMe } from "@/hooks/use-me";
 import { CONFLITO_MSG, erroMsg } from "@/lib/os";
 
 export const Route = createFileRoute("/_authenticated/produtos")({
-  head: () => ({ meta: [{ title: "Produtos — Lider Gráfica" }] }),
+  head: () => ({ meta: [{ title: "Produtos — Lider Gráfica" }, { name: "description", content: "Catálogo de produtos e especificações da Lider Gráfica." }, { property: "og:title", content: "Produtos — Lider Gráfica" }, { property: "og:description", content: "Catálogo de produtos e especificações da Lider Gráfica." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }] }),
   component: Produtos,
 });
 

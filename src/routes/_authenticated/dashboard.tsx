@@ -57,8 +57,8 @@ function Dashboard() {
       <div className="flex flex-wrap items-center justify-between gap-3">
         <span className="text-sm font-medium text-muted-foreground">Lider Gráfica · Visão geral da produção</span>
         <div className="flex flex-wrap items-center gap-2">
-          <label className="flex items-center gap-2"><CalendarDays className="size-4 text-muted-foreground" /><Input aria-label="Data da produção" type="date" value={dia} onChange={e => { if (e.target.value) setDia(e.target.value); }} className="w-40 bg-card" /></label>
-          <select aria-label="Setor da produção" className={`${selectCls} w-48`} value={setorId} onChange={e => setSetorId(e.target.value)}><option value="todos">Todos os setores</option>{data.setores.map(s => <option key={s.id} value={s.id}>{s.nome}</option>)}</select>
+          <label className="flex items-center gap-2"><CalendarDays className="size-4 text-muted-foreground" /><span className="relative"><Input aria-label="Data da produção" lang="pt-BR" type="date" value={dia} onChange={e => { if (e.target.value) setDia(e.target.value); }} className="dashboard-date w-40 bg-card" /><span aria-hidden="true" className="pointer-events-none absolute left-3 top-2 text-sm tabular">{fmtData(dia)}</span></span></label>
+          <select aria-label="Setor da produção" className={`${selectCls} !w-48`} value={setorId} onChange={e => setSetorId(e.target.value)}><option value="todos">Todos os setores</option>{data.setores.map(s => <option key={s.id} value={s.id}>{s.nome}</option>)}</select>
         </div>
       </div>
       <div className="dashboard-metrics grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-7">

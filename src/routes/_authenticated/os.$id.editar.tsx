@@ -9,7 +9,7 @@ import { useMe } from "@/hooks/use-me";
 import { CONFLITO_MSG, erroMsg } from "@/lib/os";
 
 export const Route = createFileRoute("/_authenticated/os/$id/editar")({
-  head: () => ({ meta: [{ title: "Alterar OS — Lider Gráfica" }] }),
+  head: () => ({ meta: [{ title: "Alterar OS — Lider Gráfica" }, { name: "description", content: "Edição dos dados de uma ordem de serviço da Lider Gráfica." }, { property: "og:title", content: "Alterar OS — Lider Gráfica" }, { property: "og:description", content: "Edição dos dados de uma ordem de serviço da Lider Gráfica." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }] }),
   component: EditarOs,
 });
 
