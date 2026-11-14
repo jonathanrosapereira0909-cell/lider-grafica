@@ -787,6 +787,7 @@ export type Database = {
           produzido: number
         }[]
       }
+      remover_dados_demo: { Args: never; Returns: undefined }
     }
     Enums: {
       app_role: "gestor" | "producao"

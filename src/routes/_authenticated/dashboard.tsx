@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PageHeader, selectCls, StatusBadge } from "@/components/os-ui";
 import { DashboardMetas } from "@/components/dashboard-metas";
+import { DashboardDemo } from "@/components/dashboard-demo";
 import { dashboardQuery, hojeProducao, progressoMeta } from "@/lib/dashboard";
 import { fmtBRL, fmtNum, fmtData, erroMsg } from "@/lib/os";
 import { useMe } from "@/hooks/use-me";
@@ -52,7 +53,7 @@ function Dashboard() {
   const setores = data.setores.filter(s => setorId === "todos" || s.id === setorId);
 
   return <div className="dashboard-page min-h-full">
-    <PageHeader title="Dashboard – Produção Industrial" sub="Acompanhe em tempo real o fluxo de orçamentos, pedidos, O.S., produção e expedição." actions={<span className="flex items-center gap-2 text-sm font-bold"><BarChart3 className="size-5 text-primary" />Lider Gráfica</span>} />
+    <PageHeader title="Dashboard – Produção Industrial" sub="Acompanhe em tempo real o fluxo de orçamentos, pedidos, O.S., produção e expedição." actions={<>{data.temDemo && <span className="self-center rounded border bg-warning/15 px-2 py-1 text-xs font-medium text-warning-foreground">Dados de demonstração</span>}<span className="flex items-center gap-2 text-sm font-bold"><BarChart3 className="size-5 text-primary" />Lider Gráfica</span>{data.temDemo && me?.isGestor && <DashboardDemo />}</>} />
     <div className="space-y-5 p-4 lg:p-5">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <span className="text-sm font-medium text-muted-foreground">Lider Gráfica · Visão geral da produção</span>

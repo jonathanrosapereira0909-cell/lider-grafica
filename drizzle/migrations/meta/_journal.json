@@ -43,6 +43,13 @@
       "when": 1794614042818,
       "tag": "0005_dashboard_producao",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1794661320742,
+      "tag": "0006_remover_dados_demo",
+      "breakpoints": true
     }
   ]
 }

@@ -19,9 +19,13 @@ export function dashboardQuery(dia: string) {
   return queryOptions({
     queryKey: ["os", "dashboard", dia],
     queryFn: async () => {
-      const { data, error } = await supabase.rpc("dashboard_producao", { _dia: dia });
-      if (error) throw error;
-      return dashboardSchema.parse(data);
+      const [resumo, demo] = await Promise.all([
+        supabase.rpc("dashboard_producao", { _dia: dia }),
+        supabase.from("clientes").select("id").like("codigo", "DEMO-%").limit(1),
+      ]);
+      if (resumo.error) throw resumo.error;
+      if (demo.error) throw demo.error;
+      return { ...dashboardSchema.parse(resumo.data), temDemo: Boolean(demo.data?.length) };
     },
   });
 }

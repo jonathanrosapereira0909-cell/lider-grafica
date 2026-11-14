@@ -18,5 +18,6 @@
 - Never consume `os_numero_seq` in tests against the real database; sequences don't roll back.
 - Dashboard aggregates use a security-invoker database RPC; only sector production follows the selected São Paulo date. Why: RLS and current workflow counts must remain authoritative.
 - Sector goal edits compare the original value before writing. Why: this table has no version column and concurrent goal changes must not be overwritten silently.
+- Demo cleanup is a manager-only database RPC scoped by DEMO client links and codes; demo goal provenance is recorded in audit_log. Why: cleanup must preserve real records and goals edited after seeding.
 
 - Login is temporarily disabled: unauthenticated visitors are signed in anonymously and a DB trigger grants them gestor. Why: owner requested open access for now; revert by dropping on_anon_user_gestor, disabling anonymous auth and restoring the /auth redirect.

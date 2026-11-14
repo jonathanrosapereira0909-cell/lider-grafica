@@ -1,3 +1,6 @@
 - [x] Criar dados e resumo de produção com permissões preservadas.
 - [x] Criar dashboard, filtros, metas e atualização em tempo real.
 - [x] Atualizar navegação e verificar abertura, filtros e diálogo no computador e celular.
+- [ ] Inserir cadastros, OS e produção DEMO sem alterar os dados reais.
+- [ ] Adicionar identificação e remoção segura da demonstração.
+- [ ] Conferir totais, coerência das OS e relatórios preenchidos.
